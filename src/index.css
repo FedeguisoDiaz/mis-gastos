@@ -1,0 +1,124 @@
+@import 'tailwindcss';
+
+/* ====== Paleta y tipografía — cambiá acá los colores de toda la app ====== */
+@theme {
+  --color-sand: #ece2d6; /* fondo base */
+  --color-sand-deep: #dfd1c1;
+  --color-cream: #f5efe8;
+  --color-ink: #1c1b1a; /* casi negro */
+  --color-ink-soft: #5d5750;
+  --color-muted: #9b938a;
+  --color-accent: #f47c20; /* naranja */
+  --color-accent-soft: #fcd9b8;
+  --color-warm-alert: #e36a2c;
+  --color-calm: #7d9a72;
+  --font-sans: 'Urbanist Variable', 'Urbanist', system-ui, sans-serif;
+}
+
+html {
+  background: #e6d8c8;
+}
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  background: linear-gradient(170deg, #f1e9df 0%, #eadfd2 45%, #e6d8c8 100%) fixed;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ====== Escena de fondo: esferas y orbe naranja difuso ====== */
+.scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(60px);
+  background: radial-gradient(circle, #ff9a3d 0%, #f47c20 35%, rgb(244 124 32 / 0) 70%);
+  opacity: 0.55;
+}
+.sphere {
+  position: absolute;
+  border-radius: 9999px;
+  background:
+    radial-gradient(circle at 35% 28%, #ffffff 0%, #f6f1ec 30%, rgb(246 241 236 / 0) 55%),
+    radial-gradient(circle at 50% 100%, #ff8a2b 0%, #f7a766 22%, rgb(247 167 102 / 0) 55%),
+    #ece4dc;
+  box-shadow:
+    inset -18px -20px 40px rgb(160 120 90 / 0.18),
+    0 30px 60px -20px rgb(120 80 50 / 0.25);
+}
+.bubble {
+  position: absolute;
+  border-radius: 9999px;
+  border: 1px solid rgb(255 255 255 / 0.55);
+  background: radial-gradient(circle at 30% 25%, rgb(255 255 255 / 0.45), rgb(255 255 255 / 0.04) 45%, rgb(255 255 255 / 0.12) 100%);
+  box-shadow: inset 0 0 40px rgb(255 255 255 / 0.25);
+}
+
+/* ====== Superficies ====== */
+.glass {
+  background: linear-gradient(160deg, rgb(248 243 237 / 0.72), rgb(236 227 216 / 0.55));
+  backdrop-filter: blur(22px) saturate(120%);
+  -webkit-backdrop-filter: blur(22px) saturate(120%);
+  border: 1px solid rgb(255 255 255 / 0.6);
+  box-shadow: 0 20px 50px -30px rgb(90 60 30 / 0.35);
+}
+.glass-soft {
+  background: rgb(255 255 255 / 0.42);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.paper {
+  background: #fbf9f7;
+  box-shadow: 0 20px 50px -30px rgb(90 60 30 / 0.35);
+}
+.card-dark {
+  background: #1f1e1d;
+  color: #f5f1ec;
+  box-shadow: 0 24px 50px -24px rgb(28 27 26 / 0.55);
+}
+/* Orbe naranja difuso dentro de tarjetas */
+.glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(34px);
+  background: radial-gradient(circle, #ff9a3d 0%, #f47c20 40%, rgb(244 124 32 / 0) 72%);
+  pointer-events: none;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.025em;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+/* En @layer base para que las clases de Tailwind (tamaños de texto) puedan pisarlo */
+@layer base {
+  input,
+  textarea,
+  select,
+  button {
+    font-family: inherit;
+  }
+  input[type='date']::-webkit-calendar-picker-indicator {
+    opacity: 0.5;
+  }
+}
