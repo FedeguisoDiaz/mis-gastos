@@ -45,9 +45,11 @@ export default function Home({ onEdit, onNew, onGo }: Props) {
         </p>
         <p className="relative mt-2 text-sm text-white/55">
           {diff == null
-            ? s.ingresos || s.gastos
-              ? 'Lo que queda de lo que entró este mes'
-              : 'Todavía no hay movimientos este mes'
+            ? !s.ingresos && !s.gastos
+              ? 'Todavía no hay movimientos este mes'
+              : s.balance >= 0
+                ? 'Lo que queda de lo que entró este mes'
+                : 'Este mes salió un poco más de lo que entró'
             : diff <= 0
               ? `Gastaste ${Math.round(-diff * 100)}% menos que en ${prevMonth}`
               : `Gastaste ${Math.round(diff * 100)}% más que en ${prevMonth}`}
